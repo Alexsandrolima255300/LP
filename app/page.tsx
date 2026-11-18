@@ -4,8 +4,6 @@ import { useMemo, useState } from "react";
 import {
   ArrowDownRight,
   ArrowRight,
-  Check,
-  ChevronDown,
   Heart,
   Menu,
   Minus,
