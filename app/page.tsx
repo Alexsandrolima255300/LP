@@ -91,6 +91,9 @@ const products: Product[] = [
   },
 ];
 
+function demoPrice(productId: number) { return 79.9 + (productId - 1) * 15; }
+function formatPrice(value: number) { return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value); }
+
 const categories = [
   { name: "Pulseiras", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85" },
   { name: "Colares", image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=85" },
@@ -107,6 +110,7 @@ export default function Home() {
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [cart, setCart] = useState<CartLine[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [noticeOpen, setNoticeOpen] = useState(false);
 
@@ -161,9 +165,9 @@ export default function Home() {
     }
     const message = [
       "Olá! Gostaria de fazer um pedido pela LP Jóias:",
-      ...cart.map((line) => `• ${line.product.name} — quantidade: ${line.quantity}`),
+      ...cart.map((line) => `• ${line.product.name} — ${formatPrice(demoPrice(line.product.id))} (valor demonstrativo) — quantidade: ${line.quantity}`),
       "",
-      "Poderiam confirmar valores, disponibilidade e entrega?",
+      "Os preços exibidos são demonstrativos e precisam ser confirmados pela loja. Poderiam confirmar disponibilidade, valor oficial e entrega?",
     ].join("\n");
     window.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
@@ -354,8 +358,8 @@ export default function Home() {
                   <div className="product-category">{product.category}</div>
                   <h3 className="product-name">{product.name}</h3>
                   <div className="product-price">
-                    Valor a cadastrar
-                    <small>Consulte disponibilidade com a loja</small>
+                    {formatPrice(demoPrice(product.id))}
+                    <small className="demo-price-label">PREÇO ILUSTRATIVO · CONFIRMAR COM A LOJA</small>
                   </div>
                   <button className="add-button" onClick={() => addToCart(product)}>
                     Adicionar ao carrinho
@@ -446,8 +450,8 @@ export default function Home() {
         }}>
           <aside className="drawer" role="dialog" aria-modal="true" aria-label="Carrinho de compras">
             <div className="drawer-header">
-              <h2>Sua seleção</h2>
-              <button className="close-button" aria-label="Fechar carrinho" onClick={() => setCartOpen(false)}>
+              <h2>{checkoutOpen ? "Finalizar compra" : "Sua seleção"}</h2>
+              <button className="close-button" aria-label="Fechar carrinho" onClick={() => { setCartOpen(false); setCheckoutOpen(false); }}>
                 <X size={21} />
               </button>
             </div>
@@ -464,23 +468,38 @@ export default function Home() {
                     <img src={line.product.image} alt={line.product.name} />
                     <div>
                       <h3>{line.product.name}</h3>
-                      <p>Preço confirmado no atendimento</p>
+                      <p>{formatPrice(demoPrice(line.product.id))} · preço demonstrativo</p>
                       <div className="quantity-control">
                         <button aria-label="Diminuir quantidade" onClick={() => changeQuantity(line.product.id, -1)}><Minus size={12} /></button>
                         <span>{line.quantity}</span>
                         <button aria-label="Aumentar quantidade" onClick={() => changeQuantity(line.product.id, 1)}><Plus size={12} /></button>
                       </div>
                     </div>
-                    <div className="cart-line-price">A confirmar</div>
+                    <div className="cart-line-price">{formatPrice(demoPrice(line.product.id) * line.quantity)}</div>
                   </div>
                 ))}
                 <div className="cart-note">
-                  Antes de concluir, nossa equipe confirma o valor das peças e informa o valor fixo da entrega. Não trabalhamos com frete a combinar.
+                  Os preços acima são demonstrativos e serão substituídos pelos valores oficiais da LP Jóias. O frete será informado antes da confirmação do pedido.
                 </div>
-                <div className="cart-total"><span>Total</span><span>A confirmar</span></div>
-                <button className="checkout-button" onClick={startWhatsAppOrder}>
-                  Continuar pelo WhatsApp
-                </button>
+                <div className="cart-total"><span>Subtotal demonstrativo</span><span>{formatPrice(cart.reduce((sum, line) => sum + demoPrice(line.product.id) * line.quantity, 0))}</span></div>
+                {!checkoutOpen ? (
+                  <button className="checkout-button" onClick={() => setCheckoutOpen(true)}>Finalizar compra <ArrowRight size={15} /></button>
+                ) : (
+                  <section className="checkout-panel" aria-label="Finalização da compra">
+                    <button className="checkout-back" onClick={() => setCheckoutOpen(false)}>← Voltar ao carrinho</button>
+                    <div className="section-kicker">Última etapa</div>
+                    <h3>Condições de pagamento</h3>
+                    <div className="checkout-option"><strong>Pix</strong><span>Pagamento à vista, conforme confirmação da loja.</span></div>
+                    <div className="checkout-option"><strong>Cartão de crédito</strong><span>Parcelamento em até 6 vezes. Condições e eventuais juros serão confirmados antes do pagamento.</span></div>
+                    <div className="checkout-option"><strong>Cartão de débito</strong><span>Disponibilidade confirmada no atendimento.</span></div>
+                    <div className="checkout-option"><strong>Dinheiro na entrega</strong><span>Consulte a disponibilidade para sua região.</span></div>
+                    <h3 className="delivery-heading">Entrega</h3>
+                    <div className="checkout-option"><strong>Entrega LP Jóias ou parceiro</strong><span>A loja poderá realizar a entrega própria ou por entregador terceirizado, conforme disponibilidade.</span></div>
+                    <div className="checkout-option"><strong>Valor da entrega</strong><span>Será informado antes de confirmar o pedido. O frete fixo ainda precisa ser cadastrado pela loja.</span></div>
+                    <div className="checkout-disclaimer">Importante: os preços dos produtos nesta versão são demonstrativos. A loja deverá cadastrar os valores oficiais e o frete antes de aceitar pedidos.</div>
+                    <button className="checkout-button" onClick={startWhatsAppOrder}>Continuar para atendimento <ArrowRight size={15} /></button>
+                  </section>
+                )}
               </>
             )}
           </aside>
