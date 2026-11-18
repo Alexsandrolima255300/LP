@@ -262,6 +262,20 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
 .hero h1 em {
   font-weight: 400;
   font-style: italic;
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 9px;
+}
+
+.review-rule::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  display: inline-block;
+  flex: 0 0 5px;
 }
 @media (max-width: 760px) {
   .hero h1 {
