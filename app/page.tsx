@@ -189,11 +189,6 @@ export default function Home() {
           {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
 
-        <a className="brand" href="#" aria-label="LP Jóias - início">
-          <span className="brand-name">LP JÓIAS</span>
-          <span className="brand-sub">SILVER COLLECTION</span>
-        </a>
-
         <nav className="desktop-nav" aria-label="Navegação principal">
           <a href="#inicio">Início</a>
           <a href="#colecoes">Coleções</a>
