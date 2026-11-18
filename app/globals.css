@@ -249,3 +249,24 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   .reviews-section { padding:68px 22px; }
   .review-rule { font-size:8px; line-height:1.6; }
 }
+
+
+/* Hero headline: editorial luxury typography */
+.hero h1 {
+  font-family: var(--font-display), "Cormorant Garamond", serif;
+  font-size: clamp(58px, 7.2vw, 94px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+.hero h1 em {
+  font-weight: 300;
+  font-style: italic;
+}
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(52px, 13vw, 72px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+}
