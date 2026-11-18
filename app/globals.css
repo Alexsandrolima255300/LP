@@ -284,3 +284,53 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
     letter-spacing: -0.025em;
   }
 }
+
+
+/* LP Jóias — superfícies escuras em todo o percurso de compra */
+.products-section { background:linear-gradient(145deg,#141619 0%,#1b1e22 100%) !important; color:var(--pearl); }
+.products-section .section-kicker { color:#8caa99; }
+.products-section .section-description { color:#a5a7aa; }
+.search-box { border-color:rgba(192,192,192,.32); color:#c0c0c0; }
+.search-box input { color:#f5f5f2; }
+.search-box input::placeholder { color:#85898d; }
+.filter-chip { border-color:#45494d; color:#c8c9c7; background:#191b1e; }
+.filter-chip.active,.filter-chip:hover { background:#c0c0c0; color:#111214; border-color:#c0c0c0; }
+.product-image-wrap { background:#222529; }
+.favorite-button { background:rgba(17,18,20,.88); color:#e7e7e4; border:1px solid rgba(192,192,192,.22); }
+.product-category { color:#92999f; }
+.product-price { color:#f0f0ec; }
+.product-price small { color:#92999f; }
+.demo-price-label { color:#a9bcae !important; font-size:8px !important; letter-spacing:.07em; }
+.add-button { border-color:#777c82; color:#e8e8e4; }
+.add-button:hover { background:#c0c0c0; color:#111214; border-color:#c0c0c0; }
+.empty-state { color:#a5a7aa; }
+.drawer { background:#151719; color:#f5f5f2; border-left:1px solid rgba(192,192,192,.2); }
+.drawer-header { border-color:rgba(192,192,192,.22); }
+.drawer-header h2 { color:#f5f5f2; }
+.close-button { color:#f5f5f2; }
+.cart-line { border-color:rgba(192,192,192,.18); }
+.cart-line p { color:#9da1a3; }
+.quantity-control button { border-color:#555b60; color:#f5f5f2; background:#202326; }
+.cart-line-price { color:#e8e8e4; }
+.cart-note { background:#202326; color:#b9bdbe; border-left:2px solid #008c45; }
+.cart-total { border-color:rgba(192,192,192,.28); color:#f5f5f2; }
+.drawer-empty { color:#9da1a3; }
+.drawer-empty p { color:#f5f5f2; }
+.modal { background:#17191c; color:#f5f5f2; border:1px solid rgba(192,192,192,.2); }
+.modal h2 { color:#f5f5f2; }
+.modal p { color:#b9bdbe; }
+.modal-actions button { background:#c0c0c0; color:#111214; }
+.checkout-panel { margin-top:26px; padding-top:18px; border-top:1px solid rgba(192,192,192,.24); }
+.checkout-back { border:0; background:transparent; color:#a9bcae; padding:0; margin-bottom:22px; font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
+.checkout-panel h3 { margin:12px 0 14px; font-family:var(--font-libre),serif; font-size:19px; font-weight:400; color:#f5f5f2; }
+.checkout-option { display:flex; flex-direction:column; gap:5px; padding:13px 0; border-bottom:1px solid rgba(192,192,192,.13); }
+.checkout-option strong { color:#e7e8e5; font-size:11px; letter-spacing:.04em; }
+.checkout-option span { color:#a5a9ab; font-size:10px; line-height:1.7; }
+.delivery-heading { margin-top:25px !important; }
+.checkout-disclaimer { margin:20px 0; padding:13px; background:#202326; border-left:2px solid #cd212a; color:#bfc2c2; font-size:10px; line-height:1.75; }
+.checkout-button { display:flex; align-items:center; justify-content:center; gap:10px; background:#c0c0c0; color:#111214; }
+.checkout-button:hover { background:#f5f5f2; color:#111214; }
+@media (max-width:760px) {
+  .products-section { background:linear-gradient(160deg,#141619,#1a1d20) !important; }
+  .drawer { padding:22px 19px; }
+}
