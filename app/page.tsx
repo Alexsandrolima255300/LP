@@ -395,6 +395,13 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="reviews-section" id="avaliacoes">
+        <div className="section-kicker">Experiências verdadeiras</div>
+        <h2 className="section-title">A confiança também faz parte da beleza.</h2>
+        <p>As avaliações serão publicadas somente por clientes com pedidos concluídos e confirmados pela LP Jóias.</p>
+        <div className="review-rule"><ShieldCheck size={18} /> Avaliações verificadas — sem comentários fictícios.</div>
+      </section>
+
       <section className="quote-section">
         <div className="quote-mark">“</div>
         <blockquote>O verdadeiro brilho não precisa chamar atenção. Ele permanece.</blockquote>
@@ -421,7 +428,7 @@ export default function Home() {
             <h3>Explore</h3>
             <a href="#colecoes">Coleções</a>
             <a href="#colecao">Novidades</a>
-            <a href="#marca">Nossa essência</a>
+            <a href="#marca">Nossa essência</a>\n            <a href="#avaliacoes">Avaliações</a>
           </div>
           <div className="footer-column">
             <h3>Atendimento</h3>
@@ -466,7 +473,7 @@ export default function Home() {
                     <img src={line.product.image} alt={line.product.name} />
                     <div>
                       <h3>{line.product.name}</h3>
-                      <p>Valor a confirmar com a loja</p>
+                      <p>Preço confirmado no atendimento</p>
                       <div className="quantity-control">
                         <button aria-label="Diminuir quantidade" onClick={() => changeQuantity(line.product.id, -1)}><Minus size={12} /></button>
                         <span>{line.quantity}</span>
@@ -477,7 +484,7 @@ export default function Home() {
                   </div>
                 ))}
                 <div className="cart-note">
-                  Os preços e o valor fixo de entrega serão confirmados pela loja antes da conclusão do pedido.
+                  Antes de concluir, nossa equipe confirma o valor das peças e informa o valor fixo da entrega. Não trabalhamos com frete a combinar.
                 </div>
                 <div className="cart-total"><span>Total</span><span>A confirmar</span></div>
                 <button className="checkout-button" onClick={startWhatsAppOrder}>
