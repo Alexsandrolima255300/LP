@@ -180,10 +180,6 @@ export default function Home() {
 
   return (
     <main className="site-shell">
-      <div className="announcement">
-        Uma experiência de elegância • Descubra a coleção LP Jóias
-      </div>
-
       <header className="topbar">
         <button
           className="icon-button mobile-menu"
