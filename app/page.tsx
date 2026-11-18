@@ -236,7 +236,7 @@ export default function Home() {
       <section className="hero" id="inicio">
         <img
           className="hero-image"
-          src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=2200&q=90"
+          src="https://raw.githubusercontent.com/Alexsandrolima255300/LP/ae563dde817366a9889ad9996ba136f25702cb53/WhatsApp%20Image%202026-11-18%20at%2010.45.43.jpeg"
           alt="Composição editorial de joias em prata"
         />
         <div className="hero-content">
