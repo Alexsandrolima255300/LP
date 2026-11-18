@@ -199,3 +199,53 @@ a { color: inherit; text-decoration: none; }
   .product-image-wrap { aspect-ratio:.76; }
   .trust-item { font-size:6px; }
 }
+
+
+/* LP Jóias — acabamento editorial e microinterações */
+:root { color-scheme: dark; }
+html { scroll-padding-top: 24px; }
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--silver); outline-offset: 4px; }
+.announcement { background:linear-gradient(90deg,#0a0b0c,#171819,#0a0b0c); }
+.topbar { backdrop-filter:blur(18px); }
+.brand-name { text-shadow:0 0 24px rgba(192,192,192,.12); }
+.hero-image { animation:heroReveal 1.4s cubic-bezier(.2,.7,.2,1) both; }
+.hero-content > * { animation:rise .8s ease both; }
+.hero-content > *:nth-child(2) { animation-delay:.08s; }
+.hero-content > *:nth-child(3) { animation-delay:.16s; }
+.hero-content > *:nth-child(4) { animation-delay:.24s; }
+.category-card, .product-card { transition:transform .35s ease, opacity .35s ease; }
+.category-card:hover { transform:translateY(-4px); }
+.product-card:hover { transform:translateY(-5px); }
+.product-image-wrap { box-shadow:0 14px 38px rgba(0,0,0,.08); }
+.favorite-button:active, .add-button:active, .primary-button:active { transform:scale(.98); }
+.service-band { display:grid; grid-template-columns:repeat(3,1fr); gap:0; padding:34px clamp(22px,8vw,120px); background:#101113; border-bottom:1px solid var(--line); }
+.service-band > div { padding:8px clamp(12px,3vw,38px); }
+.service-band > div + div { border-left:1px solid var(--line); }
+.service-icon { display:block; margin-bottom:15px; color:var(--green); font-family:var(--font-libre),serif; font-size:13px; letter-spacing:.12em; }
+.service-band strong { display:block; color:var(--pearl); font-family:var(--font-libre),serif; font-size:17px; font-weight:400; }
+.service-band p { max-width:270px; margin:9px 0 0; color:var(--muted); font-size:11px; line-height:1.8; }
+.reviews-section { padding:88px 20px; text-align:center; background:#151618; border-top:1px solid var(--line); }
+.reviews-section .section-title { max-width:720px; margin:14px auto; }
+.reviews-section > p { max-width:570px; margin:0 auto; color:var(--muted); font-size:12px; line-height:1.9; }
+.review-rule { display:inline-flex; align-items:center; justify-content:center; gap:10px; margin-top:25px; padding:12px 17px; border:1px solid var(--line); color:#d4d4d0; font-size:9px; letter-spacing:.12em; text-transform:uppercase; }
+.review-rule svg { color:var(--silver); }
+.products-section { background:linear-gradient(145deg,#f5f5f2 0%,#e9e9e4 100%); }
+.drawer { box-shadow:-18px 0 60px rgba(0,0,0,.22); }
+.checkout-button { transition:background .2s, transform .2s; }
+.checkout-button:hover { background:#333638; transform:translateY(-1px); }
+@keyframes heroReveal { from { opacity:.55; transform:scale(1.035); } to { opacity:1; transform:scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+@media (max-width:760px) {
+  .service-band { grid-template-columns:1fr; padding:12px 22px; }
+  .service-band > div { padding:19px 4px; }
+  .service-band > div + div { border-left:0; border-top:1px solid var(--line); }
+  .service-icon { display:inline-block; margin:0 12px 0 0; }
+  .service-band strong { display:inline; font-size:16px; }
+  .service-band p { margin:7px 0 0 31px; max-width:none; }
+  .reviews-section { padding:68px 22px; }
+  .review-rule { font-size:8px; line-height:1.6; }
+}
