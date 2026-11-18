@@ -113,6 +113,8 @@ export default function Home() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [noticeOpen, setNoticeOpen] = useState(false);
+  const [detailProduct, setDetailProduct] = useState<Product | null>(null);
+  const [selectedSize, setSelectedSize] = useState("Aro 16");
 
   const visibleProducts = useMemo(() => {
     const normalizedSearch = search.trim().toLocaleLowerCase("pt-BR");
@@ -361,7 +363,10 @@ export default function Home() {
                     {formatPrice(demoPrice(product.id))}
                     <small className="demo-price-label">PREÇO ILUSTRATIVO · CONFIRMAR COM A LOJA</small>
                   </div>
-                  <button className="add-button" onClick={() => addToCart(product)}>
+                  <button className="add-button" onClick={() => setDetailProduct(product)}>
+                    Ver detalhes
+                  </button>
+                  <button className="add-button add-button-secondary" onClick={() => addToCart(product)}>
                     Adicionar ao carrinho
                   </button>
                 </div>
@@ -503,6 +508,44 @@ export default function Home() {
               </>
             )}
           </aside>
+        </div>
+      )}
+
+      {detailProduct && (
+        <div className="modal-backdrop product-detail-backdrop" role="presentation" onMouseDown={(event) => {
+          if (event.target === event.currentTarget) setDetailProduct(null);
+        }}>
+          <section className="product-detail-modal" role="dialog" aria-modal="true" aria-label={`Detalhes de ${detailProduct.name}`}>
+            <button className="product-detail-close" aria-label="Fechar detalhes" onClick={() => setDetailProduct(null)}><X size={21} /></button>
+            <div className="product-detail-image"><img src={detailProduct.image} alt={detailProduct.name} /></div>
+            <div className="product-detail-content">
+              <div className="product-detail-kicker">LP Jóias · Peça demonstrativa</div>
+              <div className="product-detail-tags"><span>EXEMPLO DE DESTAQUE</span><span>Categoria: {detailProduct.category}</span></div>
+              <h2>{detailProduct.name}</h2>
+              <div className="detail-rating"><span>★</span> Avaliação e quantidade de vendas serão exibidas após dados reais da loja.</div>
+              <div className="detail-promo-label">CONDIÇÃO ILUSTRATIVA</div>
+              <div className="detail-old-price">R$ 219,00</div>
+              <div className="detail-main-price">R$ 161,02 <span>26% OFF no Pix</span></div>
+              <p className="detail-card-price">ou R$ 169,49 no cartão · exemplo de 7x de R$ 24,21 sem juros</p>
+              <p className="detail-disclaimer">Todos os preços, descontos, parcelas, avaliações, vendas e condições desta tela são apenas exemplos. Os dados oficiais serão cadastrados pela LP Jóias.</p>
+              <div className="detail-section-title">Escolha o aro</div>
+              <div className="size-options">
+                {["Aro 11", "Aro 12", "Aro 13", "Aro 14", "Aro 15", "Aro 16", "Aro 17", "Aro 18", "Preciso de ajuda"].map((size) => (
+                  <button key={size} className={selectedSize === size ? "selected" : ""} onClick={() => setSelectedSize(size)}>{size}</button>
+                ))}
+              </div>
+              <div className="detail-stock">Disponibilidade de estoque será confirmada pela loja.</div>
+              <div className="detail-shipping">
+                <strong>Entrega e retirada</strong>
+                <span>As opções, valores e prazos serão informados conforme o endereço e a configuração de entrega da LP Jóias.</span>
+              </div>
+              <div className="detail-payment">
+                <strong>Formas de pagamento</strong>
+                <span>Pix · Cartão de crédito · Cartão de débito · Outras opções a confirmar.</span>
+              </div>
+              <button className="detail-add-button" onClick={() => { addToCart(detailProduct); setDetailProduct(null); }}>Adicionar ao carrinho</button>
+            </div>
+          </section>
         </div>
       )}
 
