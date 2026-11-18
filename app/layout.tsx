@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, Raleway } from "next/font/google";
+import { Manrope, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const libre = Libre_Baskerville({
-  variable: "--font-libre",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const raleway = Raleway({
-  variable: "--font-raleway",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -27,7 +27,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${libre.variable} ${raleway.variable}`}>{children}</body>
+      <body className={`${manrope.variable} ${dmSans.variable}`}>{children}</body>
     </html>
   );
 }
